@@ -1,7 +1,7 @@
 import { clearToken, getToken } from "@/utils/auth";
 import { setRouteChange } from "../mitter";
 import { clearPending } from "@/utils/http/httpCancel";
-import { Modal, notification } from "ant-design-vue";
+import { Modal } from "@arco-design/web-vue";
 import { createPermissionGuard } from "./permissionGuard";
 import { useAppStoreWithOut } from "@/stores/modules/app";
 import type { RouteLocationNormalized, Router } from "vue-router";
@@ -74,8 +74,8 @@ function createScrollGuard(router: Router) {
 // 用于在切换路由时关闭消息实例
 export function createMessageGuard(router: Router) {
   router.beforeEach(async () => {
-    Modal.destroyAll();
-    notification.destroy();
+    // Modal.destroyAll();
+    // Notification.destroy();
     return true;
   });
 }

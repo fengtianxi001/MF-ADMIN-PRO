@@ -1,6 +1,6 @@
 import type { AxiosInstance } from "axios";
 import { getToken } from "@/utils/auth";
-import { message } from "ant-design-vue";
+import { Message } from "@arco-design/web-vue";
 import httpCancel from "./httpCancel";
 //请求拦截器
 function setupRequestInterceptors(http: AxiosInstance) {
@@ -11,7 +11,7 @@ function setupRequestInterceptors(http: AxiosInstance) {
       return config;
     },
     (error) => {
-      message.error(error);
+      Message.error(error);
       return Promise.reject(error);
     }
   );

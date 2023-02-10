@@ -8,6 +8,7 @@ export const RootRoute: RouteRecordRaw = {
   meta: {
     title: "Root",
   },
+  component: () => import("@/layouts/index.vue"),
   children: [
     {
       path: PageEnum.BASE_HOME,
