@@ -10,10 +10,10 @@
   grid-gap: 4px;
   width: 100%;
   height: 30px;
-  background-color: #fff;
   border-bottom: 1px solid var(--color-border);
   padding: 4px;
   box-sizing: border-box;
+  background-color: var(--color-bg-2);
   .layout-tabs-item {
     display: flex;
     align-items: center;

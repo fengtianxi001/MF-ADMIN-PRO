@@ -31,6 +31,8 @@ const style = computed(() => {
   align-items: center;
   height: 48px;
   flex-shrink: 0;
+  cursor: pointer;
+  user-select: none;
   .layout-brand-logo {
     width: 48px;
     height: 48px;

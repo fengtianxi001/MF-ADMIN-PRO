@@ -1,5 +1,11 @@
 .layout-top-menu {
+  overflow: hidden;
   .arco-menu-inner {
     padding: 9px 0px;
+    overflow: hidden;
   }
+}
+
+a {
+  color: rgb(var(--primary-6));
 }

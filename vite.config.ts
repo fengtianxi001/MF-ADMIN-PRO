@@ -15,4 +15,15 @@ export default defineConfig({
   server: {
     open: true,
   },
+  css: {
+    preprocessorOptions: {
+      less: {
+        modifyVars: {
+          "border-radius-medium": "0px",
+          "border-radius-small": "0px",
+        },
+        javascriptEnabled: true,
+      },
+    },
+  },
 });

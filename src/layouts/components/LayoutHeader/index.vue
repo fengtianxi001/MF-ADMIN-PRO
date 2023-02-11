@@ -47,6 +47,7 @@ const style = computed<CSSProperties>(() => {
     height: 48px;
     padding: 0 10px;
     border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
     .layout-header-main-slot {
       display: flex;
       align-items: center;

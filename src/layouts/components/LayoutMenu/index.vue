@@ -1,16 +1,28 @@
 <template>
   <Menu v-model:selectedKeys="selectedKeys" mode="vertical">
     <MenuItem key="1">
-      <IconMenuFold />
-      <span>nav 1</span>
+      <IconApps />
+      <span>综合一张图</span>
     </MenuItem>
     <MenuItem key="2">
-      <IconMenuUnfold />
-      <span>nav 2</span>
+      <IconApps />
+      <span>大坝安全监测</span>
     </MenuItem>
     <MenuItem key="3">
       <IconApps />
-      <span>nav 3</span>
+      <span>巡查统计</span>
+    </MenuItem>
+    <MenuItem key="4">
+      <IconApps />
+      <span>防洪预警预报</span>
+    </MenuItem>
+    <MenuItem key="5">
+      <IconApps />
+      <span>设备管理</span>
+    </MenuItem>
+    <MenuItem key="6">
+      <IconApps />
+      <span>工程管理</span>
     </MenuItem>
   </Menu>
 </template>

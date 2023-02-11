@@ -12,4 +12,9 @@ const onClick = () => {
   setSiderCollapsed(!siderCollapsed.value);
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.layout-header-side-trigger {
+  color: var(--color-text-1);
+  cursor: pointer;
+}
+</style>

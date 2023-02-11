@@ -13,6 +13,6 @@
 .layout-content-main {
   height: 1000px;
   padding: 10px;
-  background-color: #fff;
+  background-color: var(--color-fill-2);
 }
 </style>

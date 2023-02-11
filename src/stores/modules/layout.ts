@@ -7,6 +7,7 @@ interface LayoutState {
   siderCollapsed: boolean;
   hideTabs: boolean;
   menuTheme: "dark" | "light";
+  lockScreen: boolean;
 }
 
 export const useLayoutStore = defineStore({
@@ -17,6 +18,7 @@ export const useLayoutStore = defineStore({
     siderCollapsed: false,
     hideTabs: false,
     menuTheme: "dark",
+    lockScreen: false,
   }),
   getters: {
     getMode(): "sidebar" | "topmenu" {
@@ -34,6 +36,9 @@ export const useLayoutStore = defineStore({
     getMenuTheme(): "dark" | "light" {
       return this.menuTheme;
     },
+    getLockScreen(): boolean {
+      return this.lockScreen;
+    },
   },
   actions: {
     setMode(mode: "sidebar" | "topmenu"): void {
@@ -50,6 +55,9 @@ export const useLayoutStore = defineStore({
     },
     setMenuTheme(theme: "dark" | "light"): void {
       this.menuTheme = theme;
+    },
+    setLockScreen(lock: boolean): void {
+      this.lockScreen = lock;
     },
   },
 });
