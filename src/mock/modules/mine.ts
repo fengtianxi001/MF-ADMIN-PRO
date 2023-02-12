@@ -14,7 +14,7 @@ const config = {
         level: `等级${index}`,
         number: 10,
         department: `部门${index}`,
-        storager: `保管人${index}`,
+        storager: `入库人${index}`,
         storageTime: new Date().getTime(),
         purchaseTime: new Date().getTime(),
         status: 1,
