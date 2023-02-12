@@ -1,10 +1,10 @@
 <template>
   <div class="layout-lockscreen">
-    <Clock />
+    <FlipClock />
   </div>
 </template>
 <script setup lang="ts">
-import Clock from "./Clock/index.vue";
+import FlipClock from "./FlipClock/index.vue";
 </script>
 <style lang="scss">
 .layout-lockscreen {

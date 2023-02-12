@@ -10,10 +10,10 @@
 //@ts-ignore
 import Tick from "@pqina/flip";
 import "@pqina/flip/dist/flip.min.css";
-import { onMounted, ref, watchEffect } from "vue";
+import { onMounted, ref, watch, watchEffect } from "vue";
 
 interface PropsType {
-  value: number;
+  value: number | string;
 }
 const props = defineProps<PropsType>();
 const tick = ref<HTMLElement | null>(null);
@@ -23,16 +23,22 @@ onMounted(() => {
     value: props.value,
   });
 });
-watchEffect(() => {
-  console.log("props.value", props.value);
-  if (instance) {
-    instance.value = props.value;
+
+watch(
+  () => props.value,
+  (value) => {
+    console.log("inter");
+    instance && (instance.value = value);
   }
-});
+);
 </script>
 
-<style scoped>
+<style lang="scss">
 .tick {
   font-size: 3em;
+  .tick-flip-panel-text-wrapper {
+    font-weight: bold;
+    color: #aeaeae;
+  }
 }
 </style>
