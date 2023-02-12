@@ -4,8 +4,8 @@ import type { GetUserInfoModel, GetTenantInfoModel } from "./types";
 export enum Api {
   Login = "/web/site/login",
   Logout = "/web/site/logout",
-  GetUserInfo = "/web/mine/getUser",
-  GetTenantInfo = "/web/site/tenant",
+  GetUserInfo = "/web/site/getUser",
+  GetPermission = "/web/site/permission",
 }
 
 export function login(data: any) {
@@ -20,6 +20,6 @@ export function getUserInfo() {
   return http<GetUserInfoModel>({ url: Api.GetUserInfo });
 }
 
-export function getTenantInfo() {
-  return http<GetTenantInfoModel>({ url: Api.GetTenantInfo });
+export function getPermission() {
+  return http({ url: Api.GetPermission });
 }

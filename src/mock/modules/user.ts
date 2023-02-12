@@ -10,5 +10,16 @@ const config = {
     introduction: "I am a super administrator",
     roles: ["admin"],
   }),
+  [Api.GetPermission]: () => [
+    {
+      path: "/mine",
+    },
+    {
+      path: "/register",
+    },
+    {
+      path: "/apply",
+    },
+  ],
 };
 export default config;

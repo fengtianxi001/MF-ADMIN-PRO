@@ -15,7 +15,7 @@
         <LayoutSideTrigger />
         <LayoutBreadcrumb />
       </LayoutHeader>
-      <LayoutMain style="padding-top: 78px" />
+      <LayoutMain :style="{ paddingTop: headerHeight }" />
       <LayoutFooter />
     </Layout>
   </Layout>
@@ -31,7 +31,7 @@ import useLayoutConfig from "../../hooks/useLayoutConfig";
 import LayoutSideTrigger from "../../components/LayoutSideTrigger/index.vue";
 import LayoutBreadcrumb from "../../components/LayoutBreadcrumb/index.vue";
 
-const { siderCollapsed, menuTheme } = useLayoutConfig();
+const { siderCollapsed, menuTheme, headerHeight } = useLayoutConfig();
 </script>
 <style lang="scss" scoped>
 .layout-sidebar {

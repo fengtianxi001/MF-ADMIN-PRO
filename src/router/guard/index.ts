@@ -8,6 +8,9 @@ import type { RouteLocationNormalized, Router } from "vue-router";
 import nProgress from "nprogress";
 import { PageEnum } from "@/enums/pageEnum";
 import { useUserStore } from "@/stores/modules/user";
+import "nprogress/nprogress.css";
+import { useTabsStoreWithOut } from "@/stores/modules/tab";
+nProgress.configure({ showSpinner: false });
 
 export function setupRouterGuard(router: Router) {
   createPageGuard(router);
@@ -18,6 +21,7 @@ export function setupRouterGuard(router: Router) {
   createProgressGuard(router);
   createPermissionGuard(router);
   createStateGuard(router);
+  createTabsGuard(router);
 }
 
 //用于处理页面状态的挂钩
@@ -101,5 +105,13 @@ export function createStateGuard(router: Router) {
       userStore.resetState();
       clearToken();
     }
+  });
+}
+
+// 用于在切换路由时管理页签
+export function createTabsGuard(router: Router) {
+  router.afterEach((to) => {
+    const tabsStore = useTabsStoreWithOut();
+    tabsStore.tabAppend(to);
   });
 }

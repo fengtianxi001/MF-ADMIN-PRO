@@ -8,7 +8,7 @@ function setupResponseInterceptors(http: AxiosInstance) {
     (response) => {
       httpCancel.removePending(response.config);
       httpStatusCustom(response);
-      return response.data;
+      return response.data.data;
     },
     (error) => {
       httpStatus(error);

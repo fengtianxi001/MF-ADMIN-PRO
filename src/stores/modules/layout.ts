@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { store } from "@/stores";
-
+import { useLocalStorageState } from "@/hooks";
+import { watch } from "vue";
 interface LayoutState {
   mode: "sidebar" | "topmenu";
   siderWidth: number;
@@ -8,58 +9,73 @@ interface LayoutState {
   hideTabs: boolean;
   menuTheme: "dark" | "light";
   lockScreen: boolean;
+  theme: "dark" | "light";
+  greyMode: boolean;
+  hypochromatopsia: boolean;
+  hideFooter: boolean;
 }
 
-export const useLayoutStore = defineStore({
-  id: "layout",
-  state: (): LayoutState => ({
-    mode: "topmenu",
-    siderWidth: 256,
-    siderCollapsed: false,
-    hideTabs: false,
-    menuTheme: "dark",
-    lockScreen: false,
-  }),
-  getters: {
-    getMode(): "sidebar" | "topmenu" {
-      return this.mode;
+const defaulValue: LayoutState = {
+  mode: "sidebar",
+  siderWidth: 256,
+  siderCollapsed: false,
+
+  menuTheme: "dark",
+  lockScreen: false,
+  theme: "dark",
+  greyMode: false,
+  hypochromatopsia: false,
+  hideFooter: false,
+  hideTabs: false,
+};
+export const useLayoutStore = defineStore("app-layout", () => {
+  const state = useLocalStorageState<LayoutState>("LAYOUT_CONFIG", {
+    defaultValue: { ...defaulValue },
+  });
+
+  const resetState = () => {
+    state.value = defaulValue;
+  };
+
+  //灰度模式
+  watch(
+    () => state.value.greyMode,
+    (greyMode) => {
+      if (greyMode) {
+        const html = <HTMLElement>document.querySelector("html");
+        html.style.filter = "grayscale(100%)";
+      } else {
+        const html = <HTMLElement>document.querySelector("html");
+        html.style.filter = "grayscale(0%)";
+      }
     },
-    getSiderWidth(): number {
-      return this.siderWidth;
+    { immediate: true }
+  );
+
+  //色盲模式
+  watch(
+    () => state.value.hypochromatopsia,
+    (hypochromatopsia) => {
+      if (hypochromatopsia) {
+        const html = <HTMLElement>document.querySelector("html");
+        html.style.filter = "invert(80)";
+      } else {
+        const html = <HTMLElement>document.querySelector("html");
+        html.style.filter = "invert(0)";
+      }
     },
-    getSiderCollapsed(): boolean {
-      return this.siderCollapsed;
+    { immediate: true }
+  );
+
+  //主题切换
+  watch(
+    () => state.value.theme,
+    (theme) => {
+      document.body.setAttribute("arco-theme", theme);
     },
-    getHideTabs(): boolean {
-      return this.hideTabs;
-    },
-    getMenuTheme(): "dark" | "light" {
-      return this.menuTheme;
-    },
-    getLockScreen(): boolean {
-      return this.lockScreen;
-    },
-  },
-  actions: {
-    setMode(mode: "sidebar" | "topmenu"): void {
-      this.mode = mode;
-    },
-    setSiderWidth(width: number): void {
-      this.siderWidth = width;
-    },
-    setSiderCollapsed(collapsed: boolean): void {
-      this.siderCollapsed = collapsed;
-    },
-    setHideTabs(hide: boolean): void {
-      this.hideTabs = hide;
-    },
-    setMenuTheme(theme: "dark" | "light"): void {
-      this.menuTheme = theme;
-    },
-    setLockScreen(lock: boolean): void {
-      this.lockScreen = lock;
-    },
-  },
+    { immediate: true }
+  );
+  return { state, resetState };
 });
 
 //be used outside the setup

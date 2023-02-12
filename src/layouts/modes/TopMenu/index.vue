@@ -5,7 +5,7 @@
         <LayoutBrand />
         <LayoutMenu mode="horizontal" :theme="menuTheme" />
       </LayoutHeader>
-      <LayoutMain style="padding-top: 78px" />
+      <LayoutMain :style="{ paddingTop: headerHeight }" />
       <LayoutFooter />
     </Layout>
   </Layout>
@@ -19,7 +19,7 @@ import LayoutMain from "../../components/LayoutMain/index.vue";
 import LayoutFooter from "../../components/LayoutFooter/index.vue";
 import useLayoutConfig from "../../hooks/useLayoutConfig";
 
-const { menuTheme } = useLayoutConfig();
+const { menuTheme, headerHeight } = useLayoutConfig();
 </script>
 <style lang="scss" scoped>
 .layout-top-menu {

@@ -2,7 +2,7 @@
   <div class="layout-brand">
     <img class="layout-brand-logo" :src="logo" alt="logo" />
     <div class="layout-brand-title" v-show="!siderCollapsed" :style="style">
-      Vben Admin
+      MF-DEVICE
     </div>
   </div>
 </template>

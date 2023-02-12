@@ -1,12 +1,14 @@
 import { PageEnum } from "@/enums/pageEnum";
 import type { RouteRecordRaw } from "vue-router";
+import type { routesType } from "./types";
+
 // 根路由
-export const RootRoute: RouteRecordRaw = {
+export const RootRoute: routesType = {
   path: "/",
   name: "Root",
   redirect: PageEnum.BASE_HOME,
   meta: {
-    title: "Root",
+    locale: "首页",
   },
   component: () => import("@/layouts/index.vue"),
   children: [
@@ -15,7 +17,7 @@ export const RootRoute: RouteRecordRaw = {
       name: "Dashboard",
       component: () => import("@/views/dashboard/index.vue"),
       meta: {
-        title: "Dashboard",
+        locale: "仪表盘",
       },
     },
   ],
@@ -39,4 +41,4 @@ export const ErrorRoute: RouteRecordRaw = {
   },
 };
 
-export default [RootRoute, LoginRoute, ErrorRoute];
+export default [RootRoute, LoginRoute];

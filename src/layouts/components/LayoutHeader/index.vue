@@ -6,7 +6,7 @@
       </div>
       <LayoutOperate />
     </div>
-    <LayoutTabs />
+    <LayoutTabs v-if="!hideTabs" />
   </LayoutHeader>
 </template>
 <script setup lang="ts">
@@ -16,7 +16,7 @@ import LayoutTabs from "../LayoutTabs/index.vue";
 import LayoutOperate from "../LayoutOperate/index.vue";
 import useLayoutConfig from "../../hooks/useLayoutConfig";
 
-const { mode, siderCollapsed, menuTheme } = useLayoutConfig();
+const { mode, siderCollapsed, menuTheme, hideTabs } = useLayoutConfig();
 const style = computed<CSSProperties>(() => {
   if (mode.value === "sidebar") {
     return {

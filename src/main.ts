@@ -7,6 +7,7 @@ import App from "./App.vue";
 import ArcoVue from "@arco-design/web-vue";
 import "@arco-design/web-vue/dist/arco.less";
 import "@/assets/styles/reset.scss";
+import "@/assets/styles/global.scss";
 async function bootstrap() {
   const app = createApp(App);
   app.use(ArcoVue);
