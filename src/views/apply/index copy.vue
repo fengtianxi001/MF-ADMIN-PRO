@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    <BaseCard title="设备申领列表">
+    <BaseCard title="设备登记列表">
       <BaseTableFilter
         v-model="search"
         label-width="70px"
@@ -26,7 +26,7 @@ import BaseCard from "@/components/BaseCard/index.vue";
 import BaseTableFilter from "@/components/BaseTableFilter/index.vue";
 import BaseButtonGroup from "@/components/BaseButtonGroup/index.vue";
 import BaseTable from "@/components/BaseTable/index.vue";
-import ApplyForm from "./ApplyForm.vue";
+import RegisterDeviceForm from "./ApplyForm.vue";
 import BaseConfirm from "@/components/BaseConfirm";
 import { size } from "lodash";
 import { useTable } from "@/hooks";
@@ -40,7 +40,7 @@ const tableFilter = reactive([
   {
     name: "code",
     component: "Input",
-    label: "申领原因",
+    label: "设备编号",
     formItemProps: {
       labelColFlex: "100px",
     },
@@ -48,22 +48,27 @@ const tableFilter = reactive([
   {
     name: "name",
     component: "Input",
-    label: "申领内容",
+    label: "设备名称",
   },
   {
     name: "category",
     component: "Input",
-    label: "申领人",
+    label: "设备类别",
+  },
+  {
+    name: "model",
+    component: "Input",
+    label: "设备型号",
   },
   {
     name: "storager",
     component: "Input",
-    label: "审核人",
+    label: "入库人",
   },
   {
     name: "storageTime",
     component: "DatePicker",
-    label: "申领时间",
+    label: "入库时间",
   },
 ]);
 //表格按钮配置项
@@ -85,28 +90,38 @@ const tableButton = computed(() => [
 //表格列配置项
 const tableColumns = [
   {
-    title: "申领原因",
+    title: "设备编号",
     align: "center",
     render: (record: any) => <Tag color="arcoblue">{record.code}</Tag>,
   },
   {
-    title: "申领内容",
+    title: "设备名称",
     align: "center",
     dataIndex: "name",
   },
   {
-    title: "申领人",
+    title: "设备型号",
     align: "center",
     dataIndex: "model",
   },
 
   {
-    title: "审核人",
+    title: "设备类别",
     align: "center",
     dataIndex: "category",
   },
   {
-    title: "申领时间",
+    title: "设备数量",
+    align: "center",
+    dataIndex: "number",
+  },
+  {
+    title: "入库人",
+    align: "center",
+    dataIndex: "storager",
+  },
+  {
+    title: "入库时间",
     align: "center",
     render: (record: any) => dateFormater(record.storageTime),
   },
@@ -126,11 +141,6 @@ const tableColumns = [
           text: "删除",
           onClick: () => tableOperate.onDelete(record),
         },
-        {
-          type: "text",
-          text: "撤回",
-          onClick: () => tableOperate.onWithdraw(record),
-        },
       ];
       return <BaseButtonGroup data={configs}></BaseButtonGroup>;
     },
@@ -143,25 +153,17 @@ const { selected, loading, dataSource, search, pagination, run } = useTable(
 //表格数据操作
 const tableOperate = {
   onDetail: async (record: any) => {
-    const result = await Modal(ApplyForm, { id: record.id });
+    const result = await Modal(RegisterDeviceForm, { id: record.id });
     result && run();
   },
   onCreate: async () => {
-    const result = await Modal(ApplyForm);
+    const result = await Modal(RegisterDeviceForm);
     result && run();
   },
   onDelete: async (record: any) => {
     const result = await BaseConfirm({
       title: "删除确认",
       content: "确认删除该记录吗？",
-    });
-    const response = result && (await deleteRegisterDevice(record.id));
-    response && run();
-  },
-  onWithdraw: async (record: any) => {
-    const result = await BaseConfirm({
-      title: "撤回确认",
-      content: "确认撤回该记录吗？",
     });
     const response = result && (await deleteRegisterDevice(record.id));
     response && run();
