@@ -3,6 +3,7 @@ import { getPermission } from "@/apis/user";
 import { constantRoutes } from "@/router/routes/constant";
 import { map, filter } from "lodash";
 import { router } from "@/router";
+import type { routesType } from "@/router/routes/types";
 interface AppPermissionState {
   isDynamicAddedRoute: boolean;
   lastBuildMenuTime: number;
@@ -38,10 +39,10 @@ export const usePermissionStore = defineStore({
       this.frontMenuList = frontMenuList;
     },
     async buildRoutesAction() {
-      const response = map(await getPermission(), "path");
-      const find = filter(constantRoutes, (item) => {
-        return response.includes(item.path);
-      });
+      const response = <any>await getPermission();
+      const find = <routesType[]>(
+        filter(constantRoutes, (item) => response.includes(item.path))
+      );
       const root = router.options.routes.find((item) => item.path === "/");
       if (root) {
         root.children?.push(...find);

@@ -102,7 +102,7 @@ export function createStateGuard(router: Router) {
   router.afterEach((to) => {
     if (to.path === PageEnum.BASE_LOGIN) {
       const userStore = useUserStore();
-      userStore.resetState();
+      userStore.resetUserInfo();
       clearToken();
     }
   });

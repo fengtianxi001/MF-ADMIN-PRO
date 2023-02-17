@@ -1,6 +1,5 @@
 import http from "@/utils/http";
-import type { GetUserInfoModel, GetTenantInfoModel } from "./types";
-
+import type { GetUserInfoModel } from "./types";
 export enum Api {
   Login = "/web/site/login",
   Logout = "/web/site/logout",

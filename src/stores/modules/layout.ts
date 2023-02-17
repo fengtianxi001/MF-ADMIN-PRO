@@ -2,7 +2,9 @@ import { defineStore } from "pinia";
 import { store } from "@/stores";
 import { useLocalStorageState } from "@/hooks";
 import { watch } from "vue";
-interface LayoutState {
+import APP_CONFIGS from "@/configs/app";
+
+export interface LayoutState {
   mode: "sidebar" | "topmenu";
   siderWidth: number;
   siderCollapsed: boolean;
@@ -16,18 +18,9 @@ interface LayoutState {
 }
 
 const defaulValue: LayoutState = {
-  mode: "sidebar",
-  siderWidth: 256,
-  siderCollapsed: false,
-
-  menuTheme: "dark",
-  lockScreen: false,
-  theme: "dark",
-  greyMode: false,
-  hypochromatopsia: false,
-  hideFooter: false,
-  hideTabs: false,
+  ...APP_CONFIGS.DEFAULT_LAYOUT,
 };
+
 export const useLayoutStore = defineStore("app-layout", () => {
   const state = useLocalStorageState<LayoutState>("LAYOUT_CONFIG", {
     defaultValue: { ...defaulValue },

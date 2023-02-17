@@ -1,7 +1,14 @@
 import { store } from "@/stores";
 import { defineStore } from "pinia";
-import type { GetUserInfoModel } from "@/apis/user/types";
+
 import { getUserInfo } from "@/apis/user";
+import { login } from "@/apis/user";
+import type { GetUserInfoModel } from "@/apis/user/types";
+import { setToken } from "@/utils/auth";
+import { Message } from "@arco-design/web-vue";
+import { router } from "@/router";
+import { PageEnum } from "@/enums/pageEnum";
+
 interface UserState {
   userInfo: Nullable<GetUserInfoModel>;
 }
@@ -25,8 +32,21 @@ export const useUserStore = defineStore({
       const userInfo = await getUserInfo();
       this.setUserInfo(userInfo);
     },
-    resetState() {
+    resetUserInfo() {
       this.userInfo = null;
+    },
+    async userLogin(params: any) {
+      const { tokenValue } = await login(params);
+      if (!tokenValue) return void 0;
+      setToken(tokenValue);
+      Message.success("登录成功");
+      router.push("/");
+      return void 0;
+    },
+    userLogout() {
+      setToken("");
+      this.resetUserInfo();
+      router.push(PageEnum.BASE_LOGIN);
     },
   },
 });

@@ -1,14 +1,9 @@
-.layout-top-menu {
-  .arco-menu-inner {
-    padding: 9px 0px;
-    overflow: hidden;
-  }
-}
-
-a {
-  color: rgb(var(--primary-6));
-}
-
 .arco-spin {
   width: 100%;
+}
+.base-confirm-modal {
+  padding: 20px 24px;
+  .arco-modal-body {
+    text-align: center;
+  }
 }

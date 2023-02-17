@@ -1,12 +1,12 @@
 <template>
   <div class="layout-operate">
-    <FullScreen title="切换全屏" />
-    <Theme title="切换主题" />
-    <Notify title="系统通知" />
-    <LockScreen title="屏幕锁定" />
+    <FullScreen v-if="lAYOUT_OPERATES.fullscreen" title="切换全屏" />
+    <Theme v-if="lAYOUT_OPERATES.theme" title="切换主题" />
+    <Notify v-if="lAYOUT_OPERATES.notify" title="系统通知" />
+    <LockScreen v-if="lAYOUT_OPERATES.lockscreen" title="屏幕锁定" />
+    <Refresh v-if="lAYOUT_OPERATES.refresh" title="页面刷新" />
+    <Setting v-if="lAYOUT_OPERATES.setting" title="系统设置" />
     <Profile title="用户信息" />
-    <Refresh title="页面刷新" />
-    <Setting title="系统设置" />
   </div>
 </template>
 <script setup lang="ts">
@@ -17,6 +17,9 @@ import Setting from "./Setting/index.vue";
 import Theme from "./Theme/index.vue";
 import Notify from "./Notify/index.vue";
 import Refresh from "./Refresh/index.vue";
+import APP_CONFIGS from "@/configs/app";
+
+const { lAYOUT_OPERATES } = APP_CONFIGS;
 </script>
 <style lang="scss" scoped>
 .layout-operate {

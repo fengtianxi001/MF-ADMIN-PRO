@@ -31,6 +31,6 @@ const style = computed(() => {
   height: 30px;
   border-radius: 50%;
   cursor: pointer;
-  // background-color: var(--color-fill-2);
+  overflow: hidden;
 }
 </style>

@@ -8,7 +8,7 @@
       :collapsed="siderCollapsed"
     >
       <LayoutBrand />
-      <LayoutMenu />
+      <LayoutMenu mode="vertical" />
     </LayoutSider>
     <Layout>
       <LayoutHeader>

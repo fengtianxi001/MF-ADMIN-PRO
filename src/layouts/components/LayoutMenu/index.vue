@@ -1,8 +1,8 @@
 <template>
   <Menu
     :selected-keys="selectedKey"
-    mode="vertical"
     auto-open
+    class="layout-menu"
     @menu-item-click="onMenuItemClick"
   >
     <LayoutMainMenuItem :routes="permissionStore.frontMenuList" />
@@ -21,4 +21,17 @@ const permissionStore = usePermissionStore();
 const selectedKey = computed(() => [route.path]);
 const onMenuItemClick = (key: string) => router.push(key);
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.layout-menu {
+  &.arco-menu-horizontal {
+    :deep(.arco-menu-inner) {
+      .arco-menu-icon {
+        margin-right: 10px;
+      }
+      .arco-menu-item {
+        margin-left: 0px;
+      }
+    }
+  }
+}
+</style>

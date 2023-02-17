@@ -1,15 +1,17 @@
 <template>
   <div class="layout-brand">
-    <img class="layout-brand-logo" :src="logo" alt="logo" />
+    <img class="layout-brand-logo" :src="APP_LOGO" alt="logo" />
     <div class="layout-brand-title" v-show="!siderCollapsed" :style="style">
-      MF-DEVICE
+      {{ APP_NAME }}
     </div>
   </div>
 </template>
 <script setup lang="ts">
 import { computed } from "vue";
-import logo from "@/assets/images/logo.png";
+import APP_CONFIGS from "@/configs/app";
 import useLayoutConfig from "../../hooks/useLayoutConfig";
+
+const { APP_LOGO, APP_NAME } = APP_CONFIGS;
 const { siderCollapsed, menuTheme } = useLayoutConfig();
 
 const style = computed(() => {

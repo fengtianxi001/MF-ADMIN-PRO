@@ -11,15 +11,21 @@ const config = {
     roles: ["admin"],
   }),
   [Api.GetPermission]: () => [
-    {
-      path: "/mine",
-    },
-    {
-      path: "/register",
-    },
-    {
-      path: "/apply",
-    },
+    "/table",
+    "/form",
+    "/apply",
+    "/chart",
+    "/disk",
+    "/file-preview",
+    "/rich-text",
+    "/md",
+    "/image-edit",
+    "/org-tree",
+    "/panorama",
+    "/setup",
+    "/cesium",
+    "/threejs",
+    "/log",
   ],
 };
 export default config;
