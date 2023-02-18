@@ -5,6 +5,7 @@ interface OptionsType {
   manual?: boolean;
 }
 function useTable<DataType>(service: any, options?: OptionsType) {
+  const table = ref<any>();
   const loading = ref(false);
   const selected = ref<string[]>([]);
   const pagination = ref({
@@ -52,6 +53,7 @@ function useTable<DataType>(service: any, options?: OptionsType) {
     run();
   }
   return {
+    table,
     selected,
     loading,
     pagination,

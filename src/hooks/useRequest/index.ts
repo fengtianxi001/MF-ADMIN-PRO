@@ -23,6 +23,7 @@ function useRequest(service: ServiceType, options?: OptionsType) {
       ? await options?.defaultParams()
       : options?.defaultParams ?? [];
     const response = await service(...serviceParams);
+    console.log("response", response);
     //响应结果处理
     data.value = isFunction(options?.formatResult)
       ? await options?.formatResult(response)

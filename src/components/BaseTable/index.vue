@@ -1,10 +1,14 @@
 <template>
   <Table
+    ref="table"
     v-bind="{ ...$attrs, ...attrs }"
     :columns="tableColumns"
     :pagination="false"
     :bordered="false"
   >
+    <template v-for="(_, scopeSlotName) in $slots" #[scopeSlotName]="scope">
+      <slot :name="scopeSlotName" v-bind="scope" />
+    </template>
   </Table>
 
   <Pagination
@@ -18,7 +22,7 @@
 </template>
 <script setup lang="ts">
 import { Table, Pagination } from "@arco-design/web-vue";
-import { computed, reactive } from "vue";
+import { computed, reactive, ref } from "vue";
 interface PropsType {
   pagination?: {
     current: number;
@@ -29,7 +33,7 @@ interface PropsType {
   columns: any[];
 }
 const props = defineProps<PropsType>();
-
+const table = ref();
 const attrs = computed(() => {
   const cache: any = {};
   if (props.selection) {
@@ -41,15 +45,20 @@ const attrs = computed(() => {
   }
   return cache;
 });
-const tableColumns = computed(() =>
-  props.columns.map((column) => {
+const tableColumns = computed(() => {
+  const filters = props.columns.filter((column) => column.show !== false);
+  return filters.map((column) => {
     const render = column.render;
     if (render) {
       column.render = ({ record }: any) => render(record);
     }
     return column;
-  })
-);
+  });
+});
+
+defineExpose({
+  table: table,
+});
 </script>
 <style lang="scss" scoped>
 .pagination {

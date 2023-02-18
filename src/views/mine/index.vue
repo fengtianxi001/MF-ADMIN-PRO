@@ -7,7 +7,13 @@
         :configs="tableFilter"
         :query="run"
       />
+      <div>
+        <Button>新增</Button>
+        <Button>编辑</Button>
+        <Button>删除</Button>
+      </div>
       <BaseTable
+        ref="table"
         row-key="id"
         :loading="loading"
         :columns="tableColumns"
@@ -18,19 +24,49 @@
   </div>
 </template>
 <script setup lang="tsx">
+import MineDeviceForm from "./MineDeviceForm.vue";
+import Modal from "@/components/BaseModal/index";
 import BaseCard from "@/components/BaseCard/index.vue";
 import BaseTableFilter from "@/components/BaseTableFilter/index.vue";
 import BaseButtonGroup from "@/components/BaseButtonGroup/index.vue";
 import BaseTable from "@/components/BaseTable/index.vue";
 import { useTable } from "@/hooks";
 import { getMineDevicePage } from "@/apis/mine";
-import { Tag, Badge } from "@arco-design/web-vue";
-import { reactive } from "vue";
-import MineDeviceForm from "./MineDeviceForm.vue";
-import Modal from "@/components/BaseModal/index";
+import { Tag, Badge, Button } from "@arco-design/web-vue";
+import { onMounted, reactive } from "vue";
 import { dateFormater } from "@/utils/common";
 //表格筛选配置项
 const tableFilter = reactive([
+  {
+    name: "code",
+    component: "Input",
+    label: "设备编号",
+    formItemProps: {
+      labelColFlex: "100px",
+    },
+  },
+  {
+    name: "name",
+    component: "Input",
+    label: "设备名称",
+  },
+  {
+    name: "category",
+    component: "Select",
+    label: "设备类别",
+    props: {
+      options: [
+        {
+          label: "土木工程",
+          value: "1",
+        },
+        {
+          label: "水利工程",
+          value: "2",
+        },
+      ],
+    },
+  },
   {
     name: "code",
     component: "Input",
@@ -67,6 +103,7 @@ const tableColumns = [
   {
     title: "设备编号",
     align: "center",
+    show: false,
     render: (record: any) => <Tag color="arcoblue">{record.code}</Tag>,
   },
   {
@@ -117,12 +154,12 @@ const tableColumns = [
   },
 ];
 //获取表格数据
-const { loading, dataSource, search, pagination, run } =
+const { table, loading, dataSource, search, pagination, run } =
   useTable(getMineDevicePage);
 //表格数据操作
+
 const tableOperate = {
   onDetail: async (record: any) => {
-    console.log("inter");
     const result = await Modal(MineDeviceForm, { id: record.id });
     result && run();
   },

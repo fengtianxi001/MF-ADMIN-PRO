@@ -1,10 +1,13 @@
 import type { routesType } from "./types";
 import { IconApps } from "@arco-design/web-vue/es/icon";
+import { RouterView } from "vue-router";
+
 export const constantRoutes: routesType[] = [
   {
     path: "/table",
     name: "table",
-    component: () => import("@/views/mine/index.vue"),
+    component: RouterView,
+    redirect: "/table/complex-table",
     meta: {
       locale: "系统表格",
       icon: IconApps,
@@ -13,7 +16,7 @@ export const constantRoutes: routesType[] = [
       {
         path: "/table/complex-table",
         name: "complex-table",
-        component: () => import("@/views/mine/index.vue"),
+        component: () => import("@/views/table/complex-table/index.vue"),
         meta: {
           locale: "综合表格",
           icon: IconApps,
@@ -22,7 +25,7 @@ export const constantRoutes: routesType[] = [
       {
         path: "/table/editable-table",
         name: "editable-table",
-        component: () => import("@/views/mine/index.vue"),
+        component: () => import("@/views/table/editable-table/index.vue"),
         meta: {
           locale: "可编辑表格",
           icon: IconApps,
@@ -31,7 +34,7 @@ export const constantRoutes: routesType[] = [
       {
         path: "/table/tree-table",
         name: "tree-table",
-        component: () => import("@/views/mine/index.vue"),
+        component: () => import("@/views/table/tree-table/index.vue"),
         meta: {
           locale: "树状表格",
           icon: IconApps,
