@@ -1,4 +1,4 @@
-<template>src/views/dashboard/index.vue</template>
+<template>src/views/gis/gis-cesium/index.vue</template>
 <script setup lang="ts">
 interface PropsType {}
 const props = defineProps<PropsType>();

@@ -1,4 +1,4 @@
-<template>error</template>
+<template>src/views/error/index.vue</template>
 <script setup lang="ts">
 interface PropsType {}
 const props = defineProps<PropsType>();

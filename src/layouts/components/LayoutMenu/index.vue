@@ -23,6 +23,7 @@ const onMenuItemClick = (key: string) => router.push(key);
 </script>
 <style lang="scss" scoped>
 .layout-menu {
+  user-select: none;
   &.arco-menu-horizontal {
     :deep(.arco-menu-inner) {
       .arco-menu-icon {

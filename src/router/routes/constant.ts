@@ -9,7 +9,7 @@ export const constantRoutes: routesType[] = [
     component: RouterView,
     redirect: "/table/complex-table",
     meta: {
-      locale: "系统表格",
+      locale: "基础表格",
       icon: IconApps,
     },
     children: [
@@ -45,133 +45,151 @@ export const constantRoutes: routesType[] = [
   {
     path: "/form",
     name: "form",
-    component: () => import("@/views/register/index.vue"),
+    component: () => import("@/views/form/base-form/index.vue"),
     meta: {
       locale: "基础表单",
       icon: IconApps,
     },
   },
   {
-    path: "/chart",
-    name: "chart",
-    component: () => import("@/views/apply/index.vue"),
+    path: "/fs",
+    name: "fs",
+    component: RouterView,
     meta: {
-      locale: "基础图表",
+      locale: "文件系统",
       icon: IconApps,
     },
+    children: [
+      {
+        path: "/fs-disk",
+        name: "fs-disk",
+        component: () => import("@/views/fs/fs-disk/index.vue"),
+        meta: {
+          locale: "网盘实例",
+          icon: IconApps,
+        },
+      },
+      {
+        path: "/fs-preview",
+        name: "fs-preview",
+        component: () => import("@/views/fs/fs-preview/index.vue"),
+        meta: {
+          locale: "文件预览",
+          icon: IconApps,
+        },
+      },
+    ],
   },
   {
-    path: "/disk",
-    name: "disk",
-    component: () => import("@/views/apply/index.vue"),
+    path: "/editor",
+    name: "editor",
+    component: RouterView,
     meta: {
-      locale: "网盘实例",
+      locale: "编辑器",
       icon: IconApps,
     },
+    children: [
+      {
+        path: "/editor-rich",
+        name: "editor-rich",
+        component: () => import("@/views/editor/editor-rich/index.vue"),
+        meta: {
+          locale: "富文本",
+          icon: IconApps,
+        },
+      },
+      {
+        path: "/editor-md",
+        name: "editor-md",
+        component: () => import("@/views/editor/editor-md/index.vue"),
+        meta: {
+          locale: "markdown",
+          icon: IconApps,
+        },
+      },
+      {
+        path: "/editor-image",
+        name: "editor-editor",
+        component: () => import("@/views/editor/editor-image/index.vue"),
+        meta: {
+          locale: "图片",
+          icon: IconApps,
+        },
+      },
+    ],
   },
   {
-    path: "/file-preview",
-    name: "file-preview",
-    component: () => import("@/views/apply/index.vue"),
+    path: "/gis",
+    name: "gis",
+    component: RouterView,
     meta: {
-      locale: "文件预览",
+      locale: "地理信息",
       icon: IconApps,
     },
+    children: [
+      {
+        path: "/gis-leaft",
+        name: "gis-leaft",
+        component: () => import("@/views/gis/gis-leaft/index.vue"),
+        meta: {
+          locale: "leaft",
+          icon: IconApps,
+        },
+      },
+      {
+        path: "/gis-cesium",
+        name: "gis-cesium",
+        component: () => import("@/views/gis/gis-cesium/index.vue"),
+        meta: {
+          locale: "cesium",
+          icon: IconApps,
+        },
+      },
+    ],
   },
   {
-    path: "/map",
-    name: "map",
-    component: () => import("@/views/apply/index.vue"),
+    path: "/3d",
+    name: "3d",
+    component: RouterView,
     meta: {
-      locale: "地图实例",
+      locale: "三维可视化",
       icon: IconApps,
     },
+    children: [
+      {
+        path: "/3d-panorama",
+        name: "panorama",
+        component: () => import("@/views/3d/panorama/index.vue"),
+        meta: {
+          locale: "全景图",
+          icon: IconApps,
+        },
+      },
+      {
+        path: "/3d-threejs",
+        name: "threejs",
+        component: () => import("@/views/3d/threejs/index.vue"),
+        meta: {
+          locale: "threejs",
+          icon: IconApps,
+        },
+      },
+    ],
   },
-  {
-    path: "/rich-text",
-    name: "rich-text",
-    component: () => import("@/views/apply/index.vue"),
-    meta: {
-      locale: "富文本实例",
-      icon: IconApps,
-    },
-  },
-  {
-    path: "/md",
-    name: "md",
-    component: () => import("@/views/apply/index.vue"),
-    meta: {
-      locale: "md实例",
-      icon: IconApps,
-    },
-  },
-  {
-    path: "/image-edit",
-    name: "image-edit",
-    component: () => import("@/views/apply/index.vue"),
-    meta: {
-      locale: "图片编辑",
-      icon: IconApps,
-    },
-  },
-  {
-    path: "/org-tree",
-    name: "org-tree",
-    component: () => import("@/views/apply/index.vue"),
-    meta: {
-      locale: "组织树",
-      icon: IconApps,
-    },
-  },
-  {
-    path: "/panorama",
-    name: "panorama",
-    component: () => import("@/views/apply/index.vue"),
-    meta: {
-      locale: "全景图",
-      icon: IconApps,
-    },
-  },
+
   {
     path: "/setup",
     name: "setup",
-    component: () => import("@/views/apply/index.vue"),
+    component: () => import("@/views/setup/index.vue"),
     meta: {
       locale: "引导页面",
       icon: IconApps,
     },
   },
   {
-    path: "/flow",
-    name: "flow",
-    component: () => import("@/views/apply/index.vue"),
-    meta: {
-      locale: "流程图",
-      icon: IconApps,
-    },
-  },
-  {
-    path: "/cesium",
-    name: "cesium",
-    component: () => import("@/views/apply/index.vue"),
-    meta: {
-      locale: "cesium",
-      icon: IconApps,
-    },
-  },
-  {
-    path: "/threejs",
-    name: "threejs",
-    component: () => import("@/views/apply/index.vue"),
-    meta: {
-      locale: "threejs",
-      icon: IconApps,
-    },
-  },
-  {
     path: "/log",
     name: "log",
-    component: () => import("@/views/apply/index.vue"),
+    component: () => import("@/views/log/index.vue"),
     meta: {
       locale: "错误日志",
       icon: IconApps,
