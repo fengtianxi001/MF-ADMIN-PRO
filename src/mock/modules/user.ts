@@ -17,8 +17,7 @@ const config = {
     "/editor",
     "/gis",
     "/3d",
-    "/setup",
-    "/log",
+    "/others",
   ],
 };
 export default config;

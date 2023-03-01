@@ -5,10 +5,5 @@
     <a-breadcrumb-item>资源</a-breadcrumb-item>
   </a-breadcrumb>
 </template>
-<script setup lang="ts">
-interface PropsType {
-  data: string;
-}
-const props = defineProps<PropsType>();
-</script>
+<script setup lang="ts"></script>
 <style lang="scss" scoped></style>

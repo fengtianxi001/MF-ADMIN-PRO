@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import { setupStore } from "@/stores";
+import { setupGlobDirectives } from "@/directives";
 import { setupRouterGuard } from "@/router/guard";
 import { router, setupRouter } from "@/router";
 import { setupMock } from "@/mock";
@@ -14,7 +15,9 @@ async function bootstrap() {
   setupMock();
   setupStore(app);
   setupRouter(app);
+  setupGlobDirectives(app);
   setupRouterGuard(router);
+
   app.mount("#app");
 }
 bootstrap();

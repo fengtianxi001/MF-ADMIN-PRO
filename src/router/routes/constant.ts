@@ -176,23 +176,33 @@ export const constantRoutes: routesType[] = [
       },
     ],
   },
-
   {
-    path: "/setup",
-    name: "setup",
-    component: () => import("@/views/setup/index.vue"),
+    path: "/others",
+    name: "others",
+    component: RouterView,
     meta: {
-      locale: "引导页面",
+      locale: "其他",
       icon: IconApps,
     },
-  },
-  {
-    path: "/log",
-    name: "log",
-    component: () => import("@/views/log/index.vue"),
-    meta: {
-      locale: "错误日志",
-      icon: IconApps,
-    },
+    children: [
+      {
+        path: "/setup",
+        name: "setup",
+        component: () => import("@/views/setup/index.vue"),
+        meta: {
+          locale: "引导页面",
+          icon: IconApps,
+        },
+      },
+      {
+        path: "/log",
+        name: "log",
+        component: () => import("@/views/log/index.vue"),
+        meta: {
+          locale: "错误日志",
+          icon: IconApps,
+        },
+      },
+    ],
   },
 ];
